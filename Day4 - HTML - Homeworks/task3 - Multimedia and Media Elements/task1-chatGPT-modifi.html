@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Webpage</title>
+    <style>
+        /* Basic styling for custom controls */
+        .controls {
+            margin-top: 10px;
+        }
+        button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Your Name</h2>
+    </header>
+
+    <section>
+        <p>Hello! I am [Your Name], and I love spending time on creative hobbies like reading and writing. I enjoy learning new things and always strive to improve myself. I'm passionate about technology and personal development.</p>
+    </section>
+
+    <h1>My First Webpage</h1>
+    <p>One of my favorite hobbies is reading. I enjoy diving into different worlds, exploring new ideas, and expanding my knowledge through books. It's a peaceful and fulfilling way to spend my time.</p>
+    
+    <h2>Three things I enjoy about reading:</h2>
+    <ul>
+        <li>It helps me relax and unwind.</li>
+        <li>I get to learn new things with every book.</li>
+        <li>It stimulates my imagination.</li>
+    </ul>
+
+    <!-- Embedding a YouTube Video with Custom Controls -->
+    <section>
+        <h2>Watch a video about my hobby:</h2>
+        <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/[VIDEO_ID]?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        <div class="controls">
+            <button id="play-video">Play</button>
+            <button id="pause-video">Pause</button>
+            <input type="range" id="video-volume" min="0" max="100" value="100">
+        </div>
+    </section>
+
+    <!-- Embedding an Audio File with Custom Controls -->
+    <section>
+        <h2>Listen to some relaxing music:</h2>
+        <audio id="audio-file" controls>
+            <source src="audio-file.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <div class="controls">
+            <button id="play-audio">Play</button>
+            <button id="pause-audio">Pause</button>
+            <input type="range" id="audio-volume" min="0" max="1" step="0.1" value="1">
+        </div>
+    </section>
+
+    <footer>
+        <p>Contact me at: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    </footer>
+
+    <script>
+        // Custom controls for YouTube video
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-video');
+        }
+
+        document.getElementById('play-video').addEventListener('click', function() {
+            player.playVideo();
+        });
+
+        document.getElementById('pause-video').addEventListener('click', function() {
+            player.pauseVideo();
+        });
+
+        document.getElementById('video-volume').addEventListener('input', function() {
+            player.setVolume(this.value);
+        });
+
+        // Custom controls for audio file
+        var audio = document.getElementById('audio-file');
+
+        document.getElementById('play-audio').addEventListener('click', function() {
+            audio.play();
+        });
+
+        document.getElementById('pause-audio').addEventListener('click', function() {
+            audio.pause();
+        });
+
+        document.getElementById('audio-volume').addEventListener('input', function() {
+            audio.volume = this.value;
+        });
+    </script>
+
+    <!-- Load the YouTube IFrame API asynchronously -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>

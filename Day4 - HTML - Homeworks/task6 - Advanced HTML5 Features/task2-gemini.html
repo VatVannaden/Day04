@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Theme Color</title>
+</head>
+<body>
+  <select id="themeColorSelect">
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="green">Green</option>
+  </select>
+
+  <script>
+    var themeColorSelect = document.getElementById("themeColorSelect");
+
+    function setThemeColor(color) {
+      document.body.style.backgroundColor = color;
+      localStorage.setItem("themeColor", color);
+    }
+
+    // Load the saved theme color on page load
+    var savedThemeColor = localStorage.getItem("themeColor");
+    if (savedThemeColor) {
+      setThemeColor(savedThemeColor);
+    }
+
+    themeColorSelect.addEventListener("change", function() {
+      setThemeColor(this.value);
+    });
+  </script>
+</body>
+</html>

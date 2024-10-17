@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Offline Webpage</title>
+</head>
+<body>
+  <h1>My Offline Webpage</h1>
+  <p>This webpage is cached using a service worker, so it can be accessed even when you're offline.</p>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
+
+// sw.js
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+      caches.open('static-cache')
+        .then(function(cache) {
+          return cache.addAll([
+            '/',
+            'sw.js'
+          ]);
+        })
+    );
+  });
+  
+  self.addEventListener('fetch', function(event) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(function(response) {
+          if (response) {
+            return response;
+          }
+          return fetch(event.request);
+        })
+    );
+  });

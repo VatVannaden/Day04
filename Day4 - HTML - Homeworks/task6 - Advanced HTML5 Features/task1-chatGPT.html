@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Color Selector</title>
+    <style>
+        body {
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+        #colorPicker {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Theme Color</h1>
+    <p>Choose a background color for this page:</p>
+
+    <input type="color" id="colorPicker" value="#ffffff">
+
+    <script>
+        // Function to set the background color
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+            // Save the selected color in localStorage
+            localStorage.setItem('bgColor', color);
+        }
+
+        // Load the color from localStorage
+        function loadBackgroundColor() {
+            const savedColor = localStorage.getItem('bgColor');
+            if (savedColor) {
+                setBackgroundColor(savedColor);
+                document.getElementById('colorPicker').value = savedColor; // Set the color picker to the saved color
+            }
+        }
+
+        // Event listener for color picker change
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            setBackgroundColor(this.value);
+        });
+
+        // Load the saved background color when the page loads
+        window.onload = loadBackgroundColor;
+    </script>
+</body>
+</html>
